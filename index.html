@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>客戶財務健檢與收支理財規劃</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+:root{--bg:#F4F6FB;--card:#fff;--ink:#14203A;--mute:#667391;--line:#DDE3F0;--blue:#2455E8;--bluebg:#EAF0FF;--navy:#101B33;--kpi:#1A2744;--kpiline:#2B3A5E;--cy:#38BDF8;--gr:#34D399;--am:#FBBF24;--rd:#F87171;--field:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1222;--card:#141E36;--ink:#E8ECF6;--mute:#93A0BE;--line:#26324F;--bluebg:#1B2B58;--field:#0F182C;--blue:#5B84FF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1222;--card:#141E36;--ink:#E8ECF6;--mute:#93A0BE;--line:#26324F;--bluebg:#1B2B58;--field:#0F182C;--blue:#5B84FF;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+.top{background:var(--card);padding:16px 20px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:48px;height:48px;border-radius:12px;background:var(--blue);color:#fff;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+h1{font-size:19px;margin:0;font-weight:900}
+.sub{font-size:13px;color:var(--mute)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+button{font:inherit;cursor:pointer}
+.b{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.b.pri{background:var(--blue);border-color:var(--blue);color:#fff}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 12px}
+.tab{flex:none;border:0;background:none;color:var(--mute);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;display:flex;gap:8px;align-items:center}
+.tab i{font-style:normal;width:22px;height:22px;border-radius:11px;background:var(--bluebg);display:flex;align-items:center;justify-content:center;font-size:12px}
+.tab.on{background:var(--blue);color:#fff}
+.tab.on i{background:rgba(255,255,255,.25)}
+.kpis{background:var(--navy);padding:14px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.k{background:var(--kpi);border:1px solid var(--kpiline);border-radius:12px;padding:12px 14px;color:#fff}
+.k small{display:block;font-size:12px;color:#A8B4D0}
+.k b{font-size:21px;font-weight:700;display:block;margin-top:2px}
+.k em{font-style:normal;font-size:12px;color:#A8B4D0;font-weight:400;margin-left:4px}
+.pill{float:right;font-size:12px;padding:2px 10px;border-radius:999px;background:rgba(52,211,153,.15);color:var(--gr);border:1px solid var(--gr);font-weight:700}
+main{max-width:860px;margin:20px auto;padding:0 16px 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px}
+.tag{display:inline-block;background:var(--bluebg);color:var(--blue);font-size:13px;font-weight:700;padding:4px 12px;border-radius:8px}
+h2{font-size:26px;margin:10px 0 4px;font-weight:900}
+.lead{color:var(--mute);margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 20px}
+label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+textarea{min-height:84px;resize:vertical}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;border:1px solid var(--line);background:var(--field);color:var(--ink);border-radius:12px;padding:11px 4px;font-size:14px}
+.seg button.on{border-color:var(--blue);background:var(--bluebg);color:var(--blue);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.chip{border:0;background:var(--bluebg);color:var(--blue);border-radius:999px;padding:6px 12px;font-size:13px}
+.sum{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--bluebg);display:flex;justify-content:space-between;font-weight:700;gap:12px;flex-wrap:wrap}
+.nav{display:flex;justify-content:space-between;margin-top:20px}
+.rep p{margin:0 0 10px}
+.ok{color:var(--gr)}.warn{color:var(--am)}.bad{color:var(--rd)}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px}
+td{padding:8px 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-weight:700}
+.note{font-size:12px;color:var(--mute);margin-top:16px}
+@media print{table,h3{break-inside:avoid}.top .btns,.tabs,.nav,.kpis{display:none}body::before{display:none}}
+</style>
+</head>
+<body>
+<header class="top">
+<div class="brand"><div class="logo">NT$</div><div><h1>客戶財務健檢與收支理財規劃</h1><div class="sub">專業財務顧問面談互動工具（即時試算）</div></div></div>
+<div class="btns"><button class="b" id="demo">載入範例</button><button class="b" id="reset">清空重填</button><button class="b pri" id="print">匯出完整 PDF</button></div>
+<nav class="tabs" id="tabs"></nav>
+</header>
+<section class="kpis">
+<div class="k"><small>每月總收入 (A) / 總支出 (B)</small><b><span style="color:var(--cy)" id="kA">NT$ 0</span> / <span id="kB">NT$ 0</span></b></div>
+<div class="k"><small>每月淨結餘 (C) 與儲蓄率 <span class="pill" id="kR">0%</span></small><b style="color:var(--gr)" id="kC">NT$ 0</b></div>
+<div class="k"><small>尚未分配自由資金 (E)</small><b style="color:var(--am)" id="kE">NT$ 0</b></div>
+<div class="k"><small>家庭淨資產 (H) / 預備金月數</small><b style="color:var(--cy)"><span id="kH">NT$ 0</span><em id="kM">0 個月</em></b></div>
+</section>
+<main><div class="card" id="view"></div></main>
+<script>
+var S={step:0,fam:'',v:{}},steps=['基本資料與目標','每月收支盤點','剩餘資金理財分配','資產與負債快篩','總結報告與匯出'];
+var F={
+inc:[['inc1','本人月薪（稅後）'],['inc2','配偶或其他月收入'],['inc3','兼職、租金與其他收入']],
+exp:[['e1','房租或房貸'],['e2','餐飲'],['e3','交通'],['e4','水電網路通訊'],['e5','保險費'],['e6','子女教育與托育'],['e7','娛樂休閒'],['e9','車貸月付'],['e10','信貸月付'],['e8','其他支出']],
+alc:[['a1','ETF'],['a2','股票'],['a3','保險'],['a4','銀行儲蓄'],['a5','緊急預備金'],['a6','其他']],
+ast:[['s1','活存與定存'],['s2','股票、基金、ETF'],['s3','不動產（市值）'],['s4','其他資產']],
+lia:[['l1','房貸餘額'],['l2','車貸'],['l3','信用卡與信貸'],['l4','其他負債']]};
+var goals=['存滿 6 個月緊急預備金','規劃子女教育基金','建立每月投資習慣','補強保障缺口','準備退休金'];
+var n=function(k){return +S.v[k]||0},sum=function(a){return a.reduce(function(t,x){return t+n(x[0])},0)},m=function(x){return 'NT$ '+Math.round(x).toLocaleString('zh-TW')};
+function calc(){var A=sum(F.inc),B=sum(F.exp),C=A-B,al=sum(F.alc),E=C-al,as=sum(F.ast),li=sum(F.lia),H=as-li,M=B?n('s1')/B:0,R=A?C/A*100:0;return{A:A,B:B,C:C,al:al,E:E,as:as,li:li,H:H,M:M,R:R}}
+function kpi(){var c=calc(),g=function(i){return document.getElementById(i)};g('kA').textContent=m(c.A);g('kB').textContent=m(c.B);g('kC').textContent=m(c.C);g('kR').textContent=c.R.toFixed(1)+'%';g('kE').textContent=m(c.E);g('kH').textContent=m(c.H);g('kM').textContent='（'+c.M.toFixed(1)+' 個月）';var t=document.getElementById('tot');if(t){var o={1:[sum(F.exp),'總支出'],2:[c.al,'已分配'],3:[c.H,'淨資產']}[S.step];if(o)t.innerHTML='<span>'+o[1]+'</span><span>'+m(o[0])+'</span>'}}
+function fields(list){return '<div class="grid">'+list.map(function(x){return '<div><label for="'+x[0]+'">'+x[1]+'</label><input id="'+x[0]+'" data-k="'+x[0]+'" type="number" inputmode="numeric" min="0" placeholder="0" value="'+(S.v[x[0]]||'')+'"></div>'}).join('')+'</div>'}
+function head(tag,t,d){return '<span class="tag">'+tag+'</span><h2>'+t+'</h2><p class="lead">'+d+'</p>'}
+function nav(){return '<div class="nav"><button class="b" id="prev"'+(S.step?'':' style="visibility:hidden"')+'>上一步</button>'+(S.step<4?'<button class="b pri" id="next">下一步</button>':'')+'</div>'}
+function rows(t,l){var r=l.filter(function(x){return n(x[0])}).map(function(x){return '<tr><td>'+x[1]+'</td><td>'+m(n(x[0]))+'</td></tr>'}).join('');return '<h3>'+t+'</h3><table>'+(r||'<tr><td>尚未填寫</td><td></td></tr>')+'</table>'}
+function detail(){var p=[S.v.name,S.v.age?S.v.age+' 歲':'',S.v.job,S.fam,S.v.kids?'子女 '+S.v.kids+' 名':''].filter(Boolean).join('、');return '<h3>基本資料</h3><p>'+(p||'尚未填寫')+(S.v.date?'（填表日期 '+S.v.date+'）':'')+'</p>'+rows('每月收入明細',F.inc)+rows('每月支出明細',F.exp)+rows('剩餘資金分配',F.alc)+rows('資產明細',F.ast)+rows('負債明細',F.lia)}
+function report(){var c=calc(),nm=S.v.name||'客戶',h='';
+var r1=c.R>=20?['ok','儲蓄率 '+c.R.toFixed(1)+'%，達到 20% 的參考水準，有餘力累積資產。']:c.R>=10?['warn','儲蓄率 '+c.R.toFixed(1)+'%，低於 20% 的參考水準，可檢視可調整的支出項目。']:['bad','儲蓄率 '+c.R.toFixed(1)+'%，偏低，建議先盤點固定支出。'];
+var r2=c.M>=6?['ok','活存與定存可支應 '+c.M.toFixed(1)+' 個月支出，已達 6 個月預備金目標。']:['warn','活存與定存僅可支應 '+c.M.toFixed(1)+' 個月支出，距離 6 個月目標還差 '+m(Math.max(0,6*c.B-n('s1')))+'。'];
+var r3=c.E>0?['warn','仍有 '+m(c.E)+' 每月自由資金尚未分配，可再討論用途。']:c.E<0?['bad','每月分配超出淨結餘 '+m(-c.E)+'，需要調整分配金額。']:['ok','每月淨結餘已全數分配。'];
+[r1,r2,r3].forEach(function(r){h+='<p class="'+r[0]+'">• '+r[1]+'</p>'});
+return head('STEP 4．總結','總結報告',nm+(S.v.age?'（'+S.v.age+' 歲）':'')+'的財務健檢重點，可直接列印或存成 PDF。')+'<div class="rep"><table><tr><td>每月總收入 (A)</td><td>'+m(c.A)+'</td></tr><tr><td>每月總支出 (B)</td><td>'+m(c.B)+'</td></tr><tr><td>每月淨結餘 (C)</td><td>'+m(c.C)+'</td></tr><tr><td>已分配資金</td><td>'+m(c.al)+'</td></tr><tr><td>尚未分配資金 (E)</td><td>'+m(c.E)+'</td></tr><tr><td>總資產／總負債</td><td>'+m(c.as)+' ／ '+m(c.li)+'</td></tr><tr><td>家庭淨資產 (H)</td><td>'+m(c.H)+'</td></tr></table>'+h+'<p style="margin-top:14px"><b>主要目標：</b>'+(S.v.goal||'尚未填寫')+'</p>'+detail()+'</div><p class="note">此為試算與溝通輔助，數字依客戶填寫內容計算，非投資或保險建議。</p>'}
+function draw(){var v=document.getElementById('view'),h='';
+document.getElementById('tabs').innerHTML=steps.map(function(t,i){return '<button class="tab'+(i==S.step?' on':'')+'" data-s="'+i+'"><i>'+(i==4?'★':i)+'</i>'+t+'</button>'}).join('');
+if(S.step==0){h=head('STEP 0．建立客戶檔案','客戶基本資料與核心財務目標','先了解客戶的家庭階段與最在意的目標，讓後續的收支與保障建議更貼近需求。')+'<div class="grid"><div><label for="name">客戶姓名／稱呼</label><input id="name" data-k="name" value="'+(S.v.name||'')+'"></div><div><label for="date">訪談填表日期</label><input id="date" data-k="date" type="date" value="'+(S.v.date||'')+'"></div><div><label for="age">年齡（歲）</label><input id="age" data-k="age" type="number" inputmode="numeric" value="'+(S.v.age||'')+'"></div><div><label for="job">職業／行業別</label><input id="job" data-k="job" value="'+(S.v.job||'')+'"></div><div><label>家庭結構</label><div class="seg">'+['單身','已婚無子','已婚有子'].map(function(x){return '<button data-f="'+x+'"'+(S.fam==x?' class="on"':'')+'>'+x+'</button>'}).join('')+'</div></div><div><label for="kids">子女人數（名）</label><input id="kids" data-k="kids" type="number" inputmode="numeric" min="0" value="'+(S.v.kids||'')+'"></div></div><div style="margin-top:16px"><label for="goal">目前最想達成的財務目標（可點選快速標籤或自行補充）</label><div class="chips">'+goals.map(function(g){return '<button class="chip" data-g="'+g+'">＋ '+g+'</button>'}).join('')+'</div><textarea id="goal" data-k="goal">'+(S.v.goal||'')+'</textarea></div>'+nav()}
+else if(S.step==1)h=head('STEP 1．每月收支盤點','每月收支盤點','填入每月平均金額，上方會即時算出淨結餘與儲蓄率。')+'<h3>每月收入</h3>'+fields(F.inc)+'<h3>每月支出</h3>'+fields(F.exp)+'<div class="sum" id="tot"></div>'+nav();
+else if(S.step==2)h=head('STEP 2．剩餘資金分配','剩餘資金理財分配','把每月淨結餘分配到不同用途，未分配的金額會顯示在上方 (E)。')+fields(F.alc)+'<div class="sum" id="tot"></div>'+nav();
+else if(S.step==3)h=head('STEP 3．資產與負債快篩','資產與負債快篩','盤點目前的資產與負債，算出淨資產與預備金可支應月數。')+'<h3>資產</h3>'+fields(F.ast)+'<h3>負債</h3>'+fields(F.lia)+'<div class="sum" id="tot"></div>'+nav();
+else h=report()+nav();
+v.innerHTML=h;kpi()}
+document.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.k;if(k){S.v[k]=e.target.value;kpi()}});
+document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
+if(t.dataset.s){S.step=+t.dataset.s;draw()}else if(t.id=='next'){S.step++;draw();scrollTo(0,0)}else if(t.id=='prev'){S.step--;draw();scrollTo(0,0)}
+else if(t.dataset.f){S.fam=t.dataset.f;draw()}
+else if(t.dataset.g){S.v.goal=(S.v.goal?S.v.goal+'、':'')+t.dataset.g;draw()}
+else if(t.id=='reset'){init()}
+else if(t.id=='demo'){S.fam='已婚有子';S.v={name:'陳柏宇 先生',date:S.v.date,age:34,job:'科技業專案經理',kids:1,goal:'建立 6 個月緊急預備金、規劃子女教育基金，並建立穩健的每月投資與理財配置',inc1:60000,e1:15000,e2:9000,e3:3000,e4:2500,e5:4000,e6:5000,e7:2500,e8:1000,a1:3000,a2:1000,a3:2000,a4:1000,a5:5000,a6:3000,s1:300000,s2:350000,s3:3500000,l1:2800000};draw()}
+else if(t.id=='print'){S.step=4;draw();setTimeout(function(){try{window.print()}catch(x){}},50)}});
+function init(){S={step:0,fam:'',v:{date:new Date().toISOString().slice(0,10)}};draw()}
+init();
+</script>
+</body>
+</html>
